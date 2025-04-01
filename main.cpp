@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 using namespace std;
 
 // Helpers
@@ -19,8 +21,13 @@ int factorial(int x) {
     return result;
 }
 
-int combinate(int n, int k) {
-    return factorial(n) / (factorial(n - k) * factorial(k));
+long long combinate(int n, int k) {
+    if (k > n - k) k = n - k; // Symmetry property
+    long long result = 1;
+    for (int i = 0; i < k; i++) {
+        result = result * (n - i) / (i + 1);
+    }
+    return result;
 }
 
 double binomial(int n, int k, double success, double fail) {
@@ -35,13 +42,14 @@ Note : fail + success MUST HAVE TO BE 1
 */
 
 int main() {
-    double success_ratio = 0.1;
+    double success_ratio = 0.8;
     double fail_ratio = 1 - success_ratio;
 
-    if(success_ratio <= 1 && fail_ratio <= 1 && success_ratio+fail_ratio == 1){
-        cout << binomial(10, 10, success_ratio, fail_ratio)*100 << endl; 
-    }else {
-        cout << "please input the correct format into the function ! " << endl; 
+    if (abs(success_ratio + fail_ratio - 1.0) < 1e-9) {
+        double probability = binomial(10, 2, success_ratio, fail_ratio) * 100;
+        cout << fixed << setprecision(12) << probability << "%" << endl;
+    } else {
+        cout << "Please input the correct format into the function!" << endl;
     }
     return 0;
 }
