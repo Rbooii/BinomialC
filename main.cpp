@@ -35,6 +35,13 @@ Note : fail + success MUST HAVE TO BE 1
 */
 
 int main() {
-    cout << binomial(10, 2, 0.5, 0.5)*100 << endl; 
+    double success_ratio = 0.1;
+    double fail_ratio = 1 - success_ratio;
+
+    if(success_ratio <= 1 && fail_ratio <= 1 && success_ratio+fail_ratio == 1){
+        cout << binomial(10, 10, success_ratio, fail_ratio)*100 << endl; 
+    }else {
+        cout << "please input the correct format into the function ! " << endl; 
+    }
     return 0;
 }

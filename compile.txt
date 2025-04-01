@@ -1,0 +1,7 @@
+how to compile cpp using clang on mac
+exec command : clang++ -std=c++17 -o main main.cpp
+
+"main" will be the file name so for execute program just run "./main"
+-std=c++17 will use cpp version 17 standard compiling machine to convert to binary
+clang++ will be the compiler program name because clang is the app provided by mac xcode thing
+main.cpp is the file that we are compiling, if the file name changes this need to change too!
